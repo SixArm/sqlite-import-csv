@@ -8,6 +8,34 @@
 #
 # See: https://unix.stackexchange.com/questions/424555/how-to-insert-csv-data-into-an-sqlite-table-via-a-shell-pipe/642364#642364
 #
+#
+# ## Equivalent with PowerShell
+#
+# If you have PowerShell, then you can use it to do similar:
+#
+# ```sh
+# Import-Csv example.csv | 
+# Sort-Object Color, Shape
+# ```
+#
+# To filter, use `Where-Object`:
+#
+# ```sh
+# Import-Csv example.csv | 
+# Where-Object { $_.Color -eq 'purple' } | 
+# Sort-Object Color, Shape
+# ```
+#
+# If you prefer JSON, then you can replace `Import-Csv` with `Get-Content` and `ConvertFrom-Json`:
+#
+# ```sh
+# Get-Content example.json | 
+# ConvertFrom-Json | 
+# Select-Object Color -Unique
+# ```
+# There's also `Group-Object` for aggregation.
+#
+#
 # ## Tracking
 #
 # * Program: sqlite-import-csv
