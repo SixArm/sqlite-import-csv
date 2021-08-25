@@ -4,7 +4,7 @@
 # sqlite-import-csv
 #
 # Use the local SQLite database program to import a CSV file.
-# This is useful for using SQL to explore data from the CSV.
+# This enables using SQL to explore CSV data.
 #
 # Syntax:
 #
@@ -19,21 +19,23 @@
 #   * data-table-name: the SQLite table name to be created, such as "songs".
 #     The default is the data file name basename without any extensions.
 #     For example a data file name "~/a/b/c/songs.x.y.z" causes the data 
-#     table name default name to be "songs".
+#     table name default "songs".
 #
-# Example to import from file "songs.csv" to data table with default basename "songs":
+# Example to import from file "songs.csv" to table "songs":
 #
 # ```sh
 # sqlite-import-csv songs.csv
 # ```
 #
-# Example to import from file "songs.csv" to data table with name "items":
+# Example to import from file "songs.csv" to table "items":
 #
 # ```sh
 # sqlite-import-csv songs.csv items
 # ```
 #
-# See: https://unix.stackexchange.com/questions/424555/how-to-insert-csv-data-into-an-sqlite-table-via-a-shell-pipe/642364#642364
+# Thanks: 
+# user [Derek Mahar](https://unix.stackexchange.com/users/5783/derek-mahar)
+# at [post](https://unix.stackexchange.com/questions/424555/how-to-insert-csv-data-into-an-sqlite-table-via-a-shell-pipe/642364#642364)
 #
 #
 # ## Equivalent with PowerShell
@@ -56,11 +58,15 @@
 # If you prefer JSON, then you can replace `Import-Csv` with `Get-Content` and `ConvertFrom-Json`:
 #
 # ```sh
-# Get-Content example.json | 
+# Get-Content songs.json | 
 # ConvertFrom-Json | 
 # Select-Object Album -Unique
 # ```
 # There's also `Group-Object` for aggregation.
+#
+# Thanks: 
+# user [brushfoot](https://news.ycombinator.com/user?id=brushfoot)
+# at [post](https://news.ycombinator.com/item?id=28298729)
 #
 #
 # ## Equivalent with DataProfiler
@@ -68,8 +74,6 @@
 # DataProfiler is a library to easily load any delimited type of file and find headers (even if not first row). It also works to load JSON, Parquet, AVRO and loads it into a dataframe. 
 #
 # https://github.com/capitalone/dataprofiler
-#
-# Not CLI exactly, but pretty easy:
 #
 # Install:
 #
@@ -84,6 +88,10 @@
 # csv_data.data.head(10) # Get head
 # csv_data.data.sort_values(by='name', inplace=True) # Sort
 # ```
+#
+# Thanks: 
+# user [citilife](https://news.ycombinator.com/user?id=citilife)
+# at [post](https://news.ycombinator.com/item?id=28298729)
 #
 #
 # ## Tracking

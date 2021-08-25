@@ -16,15 +16,15 @@ Parameters:
   * data-table-name: the SQLite table name to be created, such as "songs".
     The default is the data file name basename without any extensions.
     For example a data file name "~/a/b/c/songs.x.y.z" causes the data 
-    table name default name to be "songs".
+    table name default "songs".
 
-Example to import from file "songs.csv" to data table with default basename "songs":
+Example to import from file "songs.csv" to table "songs":
 
 ```sh
 sqlite-import-csv songs.csv
 ```
 
-Example to import from file "songs.csv" to data table with name "items":
+Example to import from file "songs.csv" to table "items":
 
 ```sh
 sqlite-import-csv songs.csv items
@@ -55,7 +55,7 @@ Sort-Object Title, Album
 If you prefer JSON, then you can replace `Import-Csv` with `Get-Content` and `ConvertFrom-Json`:
 
 ```sh
-Get-Content example.json | 
+Get-Content songs.json | 
 ConvertFrom-Json | 
 Select-Object Album -Unique
 ```
@@ -99,12 +99,3 @@ at [post](https://news.ycombinator.com/item?id=28298729)
 * Updated: 2021-08-26T02:30:17Z
 * License: GPL
 * Contact: Joel Parker Henderson (joel@joelparkerhenderson.com)
-
-
-## Code
-
-```sh
-data_file_name="$1"
-data_table_name="${2:-$(basename ${1/.*/})}"
-sqlite3 -csv "$data_file_name .import '|cat -' $data_table_name"
-```
