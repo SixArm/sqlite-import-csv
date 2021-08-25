@@ -30,7 +30,9 @@ Example to import from file "songs.csv" to data table with name "items":
 sqlite-import-csv songs.csv items
 ```
 
-See: https://unix.stackexchange.com/questions/424555/how-to-insert-csv-data-into-an-sqlite-table-via-a-shell-pipe/642364#642364
+Thanks: 
+user [Derek Mahar](https://unix.stackexchange.com/users/5783/derek-mahar)
+at [post](https://unix.stackexchange.com/questions/424555/how-to-insert-csv-data-into-an-sqlite-table-via-a-shell-pipe/642364#642364)
 
 
 ## Equivalent with PowerShell
@@ -59,14 +61,16 @@ Select-Object Album -Unique
 ```
 There's also `Group-Object` for aggregation.
 
+Thanks: 
+user [brushfoot](https://news.ycombinator.com/user?id=brushfoot)
+at [post](https://news.ycombinator.com/item?id=28298729)
+
 
 ## Equivalent with DataProfiler
 
 DataProfiler is a library to easily load any delimited type of file and find headers (even if not first row). It also works to load JSON, Parquet, AVRO and loads it into a dataframe. 
 
 https://github.com/capitalone/dataprofiler
-
-Not CLI exactly, but pretty easy:
 
 Install:
 
@@ -81,6 +85,10 @@ csv_data = Data('songs.csv') # Load: delimited, JSON, Parquet, Avro
 csv_data.data.head(10) # Get head
 csv_data.data.sort_values(by='name', inplace=True) # Sort
 ```
+
+Thanks: 
+user [citilife](https://news.ycombinator.com/user?id=citilife)
+at [post](https://news.ycombinator.com/item?id=28298729)
 
 
 ## Tracking
