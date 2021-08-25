@@ -1,0 +1,23 @@
+#!/bin/sh
+
+##
+# sqlite-import-csv
+#
+# Use the local SQLite database program to import a CSV file.
+# This is useful for using SQL to explore data from the CSV.
+#
+# See: https://unix.stackexchange.com/questions/424555/how-to-insert-csv-data-into-an-sqlite-table-via-a-shell-pipe/642364#642364
+#
+# ## Tracking
+#
+# * Program: sqlite-import-csv
+# * Version: 1.0.0
+# * Created: 2021-08-25T17:19:28Z
+# * Updated: 2021-08-25T17:19:28Z
+# * License: GPL
+# * Contact: Joel Parker Henderson (joel@joelparkerhenderson.com)
+##
+
+data_file_name="$1"
+data_table_name="$2"
+sqlite3 -csv "$data_file_name ".import '|cat -' $data_table_name"
