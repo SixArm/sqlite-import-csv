@@ -1,7 +1,7 @@
 # sqlite-import-csv
 
 Use the local SQLite database program to import a CSV file.
-This is useful for using SQL to explore data from the CSV.
+This enables using SQL to explore CSV data.
 
 Syntax:
 
