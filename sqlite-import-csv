@@ -36,6 +36,29 @@
 # There's also `Group-Object` for aggregation.
 #
 #
+# ## Equivalent with DataProfiler
+#
+# DataProfiler is a library to easily load any delimited type of file and find headers (even if not first row). It also works to load JSON, Parquet, AVRO and loads it into a dataframe. 
+#
+# https://github.com/capitalone/dataprofiler
+#
+# Not CLI exactly, but pretty easy:
+#
+# Install:
+#
+# ```sh
+# pip install dataprofiler[ml] --user
+# ```
+#
+# How it works:
+# 
+# ```python
+# csv_data = Data('your_file.csv') # Load: delimited, JSON, Parquet, Avro
+# csv_data.data.head(10) # Get head
+# csv_data.data.sort_values(by='name', inplace=True) # Sort
+# ```
+#
+#
 # ## Tracking
 #
 # * Program: sqlite-import-csv
