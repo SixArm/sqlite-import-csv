@@ -1,0 +1,102 @@
+# sqlite-import-csv
+
+Use the local SQLite database program to import a CSV file.
+This is useful for using SQL to explore data from the CSV.
+
+Syntax:
+
+```sh
+sqlite-import-csv <data-file-name> [data-table-name]
+```
+
+Parameters:
+
+  * data-file-name: the file on the system to import, such as "songs.csv"
+
+  * data-table-name: the SQLite table name to be created, such as "songs".
+    The default is the data file name basename without any extensions.
+    For example a data file name "~/a/b/c/songs.x.y.z" causes the data 
+    table name default name to be "songs".
+
+Example to import from file "songs.csv" to data table with default basename "songs":
+
+```sh
+sqlite-import-csv songs.csv
+```
+
+Example to import from file "songs.csv" to data table with name "items":
+
+```sh
+sqlite-import-csv songs.csv items
+```
+
+See: https://unix.stackexchange.com/questions/424555/how-to-insert-csv-data-into-an-sqlite-table-via-a-shell-pipe/642364#642364
+
+
+## Equivalent with PowerShell
+
+If you have PowerShell, then you can use it to do similar:
+
+```sh
+Import-Csv songs.csv | 
+Sort-Object Title, Album
+```
+
+To filter, use `Where-Object`:
+
+```sh
+Import-Csv songs.csv | 
+Where-Object { $_.Album -eq 'Thriller' } | 
+Sort-Object Title, Album
+```
+
+If you prefer JSON, then you can replace `Import-Csv` with `Get-Content` and `ConvertFrom-Json`:
+
+```sh
+Get-Content example.json | 
+ConvertFrom-Json | 
+Select-Object Album -Unique
+```
+There's also `Group-Object` for aggregation.
+
+
+## Equivalent with DataProfiler
+
+DataProfiler is a library to easily load any delimited type of file and find headers (even if not first row). It also works to load JSON, Parquet, AVRO and loads it into a dataframe. 
+
+https://github.com/capitalone/dataprofiler
+
+Not CLI exactly, but pretty easy:
+
+Install:
+
+```sh
+pip install dataprofiler[ml] --user
+```
+
+How it works:
+
+```python
+csv_data = Data('songs.csv') # Load: delimited, JSON, Parquet, Avro
+csv_data.data.head(10) # Get head
+csv_data.data.sort_values(by='name', inplace=True) # Sort
+```
+
+
+## Tracking
+
+* Program: sqlite-import-csv
+* Version: 1.1.0
+* Created: 2021-08-25T17:19:28Z
+* Updated: 2021-08-26T02:30:17Z
+* License: GPL
+* Contact: Joel Parker Henderson (joel@joelparkerhenderson.com)
+
+
+## Code
+
+```sh
+data_file_name="$1"
+data_table_name="${2:-$(basename ${1/.*/})}"
+sqlite3 -csv "$data_file_name .import '|cat -' $data_table_name"
+```
